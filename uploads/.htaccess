@@ -1,0 +1,6 @@
+# Uploaded files must never execute as server-side scripts.
+Options -Indexes
+<FilesMatch "\.(php|phtml|php[0-9]?|phar|cgi|pl|py|sh)$">
+    Require all denied
+</FilesMatch>
+AddType text/plain .php .phtml .php5 .phar .cgi .pl .py .sh
