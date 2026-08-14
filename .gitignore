@@ -1,3 +1,5 @@
 config.php
-data/
-uploads/
+data/*.json
+uploads/*
+!data/.gitkeep
+!uploads/.gitkeep
