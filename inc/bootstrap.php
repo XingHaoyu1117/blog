@@ -9,3 +9,4 @@ function load_json($file,$default=[]){$path=DATA_DIR.'/'.$file;if(!is_file($path
 function save_json($file,$data){if(!is_dir(DATA_DIR)) mkdir(DATA_DIR,0755,true);$tmp=DATA_DIR.'/'.$file.'.tmp';file_put_contents($tmp,json_encode($data,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT),LOCK_EX);rename($tmp,DATA_DIR.'/'.$file);}
 function admin(){return !empty($_SESSION['admin']);}
 function require_admin(){if(!admin()){header('Location: login.php');exit;}}
+function site_settings(){return load_json('settings.json',['site_name'=>SITE_NAME,'tagline'=>'个人记录 / 技术 / 游戏 / 日常','announcement'=>'SYSTEM ONLINE']);}
