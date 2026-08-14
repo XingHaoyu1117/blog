@@ -1,3 +1,9 @@
+<div align="right">
+
+[🇨🇳 中文](README.md) | 🇺🇸 English
+
+</div>
+
 # 🎖️ TACTICAL BLOG
 
 > Personal Blog & Private Drive  
@@ -11,18 +17,14 @@ The project is intentionally simple: no Node.js, npm, database, or large framewo
 
 ## ⚡ SYSTEM STATUS
 
-```text
-╔══════════════════════════════════════╗
-║        TACTICAL BLOG SYSTEM          ║
-╠══════════════════════════════════════╣
-║ STATUS       : ONLINE                ║
-║ PLATFORM     : PHP                   ║
-║ DATABASE     : NOT REQUIRED          ║
-║ NODE.JS      : NOT REQUIRED          ║
-║ STORAGE      : JSON + FILE SYSTEM    ║
-║ UI           : TACTICAL / HUD        ║
-╚══════════════════════════════════════╝
-```
+**SYSTEM:** ONLINE  
+**PLATFORM:** PHP  
+**DATABASE:** NOT REQUIRED  
+**NODE.JS:** NOT REQUIRED  
+**STORAGE:** JSON + FILE SYSTEM  
+**UI:** TACTICAL / HUD
+
+---
 
 ## 📡 Overview
 
@@ -196,28 +198,11 @@ blog/
 
 You need a PHP-capable web host. PHP 8.0+ with Apache or Nginx is recommended. Node.js is not required.
 
-Upload the project to the web root, for example:
-
-```text
-/public_html/
-```
-
-Make sure the site contains:
-
-```text
-/public_html/index.php
-```
+Upload the project to the web root, for example `/public_html/`, and make sure `/public_html/index.php` exists.
 
 Copy `config.example.php` to `config.php` and configure the administrator settings. Do **not** commit `config.php` to a public GitHub repository.
 
-Make sure PHP can write to:
-
-```text
-data/
-uploads/
-```
-
-On Linux, permissions may be adjusted according to the hosting provider, for example:
+Make sure PHP can write to `data/` and `uploads/`.
 
 ```bash
 chmod 755 data
@@ -226,25 +211,11 @@ chmod 755 uploads
 
 # 🔑 Admin Access
 
-The admin area is located under:
-
-```text
-/admin/
-```
-
-Log in with your administrator account to enter the `COMMAND CENTER`.
+The admin area is located under `/admin/`. Log in with your administrator account to enter the `COMMAND CENTER`.
 
 # ⚠️ Security Notes
 
-For public deployment, it is recommended to:
-
-- Use HTTPS
-- Use a strong administrator password
-- Never publish `config.php` to GitHub
-- Back up `data/` regularly
-- Back up `uploads/` regularly
-- Restrict upload file types
-- Never upload unknown executable files
+For public deployment, it is recommended to use HTTPS, a strong administrator password, regular backups, and restricted upload file types.
 
 Server-executable extensions such as these should never be accepted from untrusted users:
 
@@ -273,7 +244,6 @@ Current version:
 
 ```text
 [v2.x]
-
 [x] Personal Blog
 [x] Article System
 [x] Article Search
