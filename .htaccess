@@ -1,0 +1,10 @@
+# Basic Apache hardening for sensitive project files.
+Options -Indexes
+
+<FilesMatch "^(config\.php|config\.example\.php)$">
+    Require all denied
+</FilesMatch>
+
+<FilesMatch "^\.(env|git|htaccess|htpasswd)">
+    Require all denied
+</FilesMatch>
