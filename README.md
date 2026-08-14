@@ -1,3 +1,9 @@
+<div align="right">
+
+🇨🇳 中文 | [🇺🇸 English](README.en.md)
+
+</div>
+
 # 🎖️ TACTICAL BLOG
 
 > Personal Blog & Private Drive  
@@ -29,6 +35,7 @@
 这是一个个人博客 + 个人网盘系统。
 
 主要用于：
+
 - 📝 发布个人文章
 - 👤 个人介绍
 - 🔗 管理友情链接
@@ -261,6 +268,8 @@ NETWORK       : ACTIVE
 
 [ END OF TRANSMISSION ]
 ```
+
+---
 
 ## 📜 License
 
