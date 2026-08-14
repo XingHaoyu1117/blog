@@ -1,0 +1,5 @@
+# JSON data is application-internal and must not be browsable directly.
+Options -Indexes
+<FilesMatch "\.(json|tmp)$">
+    Require all denied
+</FilesMatch>
