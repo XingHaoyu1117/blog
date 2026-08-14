@@ -17,18 +17,14 @@
 
 ## ⚡ SYSTEM STATUS
 
-```text
-╔══════════════════════════════════════╗
-║        TACTICAL BLOG SYSTEM          ║
-╠══════════════════════════════════════╣
-║ STATUS       : ONLINE                ║
-║ PLATFORM     : PHP                   ║
-║ DATABASE     : NOT REQUIRED          ║
-║ NODE.JS      : NOT REQUIRED          ║
-║ STORAGE      : JSON + FILE SYSTEM    ║
-║ UI           : TACTICAL / HUD        ║
-╚══════════════════════════════════════╝
-```
+**SYSTEM:** ONLINE  
+**PLATFORM:** PHP  
+**DATABASE:** NOT REQUIRED  
+**NODE.JS:** NOT REQUIRED  
+**STORAGE:** JSON + FILE SYSTEM  
+**UI:** TACTICAL / HUD
+
+---
 
 ## 📡 项目简介
 
