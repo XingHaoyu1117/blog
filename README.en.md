@@ -18,7 +18,7 @@ The project is intentionally simple: no Node.js, npm, database, or large framewo
 ## ⚡ SYSTEM STATUS
 
 **SYSTEM:** ONLINE  
-**PLATFORM:** PHP  
+**PLATFORM:** PHP 7.0+  
 **DATABASE:** NOT REQUIRED  
 **NODE.JS:** NOT REQUIRED  
 **STORAGE:** JSON + FILE SYSTEM  
@@ -140,7 +140,7 @@ Frontend
 └── JavaScript
 
 Backend
-└── PHP
+└── PHP 7.0+
 
 Data
 ├── JSON
@@ -196,7 +196,7 @@ blog/
 
 # 🚀 Deployment
 
-You need a PHP-capable web host. PHP 8.0+ with Apache or Nginx is recommended. Node.js is not required.
+You need a **PHP 7.0+** capable web host. Apache or Nginx is supported. Node.js is not required.
 
 Upload the project to the web root, for example `/public_html/`, and make sure `/public_html/index.php` exists.
 
