@@ -18,7 +18,7 @@
 ## ⚡ SYSTEM STATUS
 
 **SYSTEM:** ONLINE  
-**PLATFORM:** PHP  
+**PLATFORM:** PHP 7.0+  
 **DATABASE:** NOT REQUIRED  
 **NODE.JS:** NOT REQUIRED  
 **STORAGE:** JSON + FILE SYSTEM  
@@ -106,7 +106,7 @@ Frontend
 └── JavaScript
 
 Backend
-└── PHP
+└── PHP 7.0+
 
 Data
 ├── JSON
@@ -162,7 +162,7 @@ blog/
 
 # 🚀 部署
 
-需要支持 PHP 的虚拟主机，建议 PHP 8.0+、Apache 或 Nginx，不需要 Node.js。
+需要支持 **PHP 7.0+** 的虚拟主机，Apache 或 Nginx 均可，不需要 Node.js。
 
 将项目上传到网站根目录，例如 `/public_html/`，确保 `/public_html/index.php` 存在。
 
