@@ -8,3 +8,4 @@ Options -Indexes
 <FilesMatch "^\.(env|git|htaccess|htpasswd)">
     Require all denied
 </FilesMatch>
+ErrorDocument 404 /404.php
