@@ -188,10 +188,9 @@ blog/
 ├── data/
 │   ├── posts.json
 │   ├── links.json
-│   └── downloads.json
-├── uploads/
+│   ├── downloads.json
 │   └── .htaccess
-├── data/
+├── uploads/
 │   └── .htaccess
 ├── config.example.php
 └── .gitignore
