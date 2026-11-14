@@ -18,7 +18,7 @@
 ## ⚡ SYSTEM STATUS
 
 **SYSTEM:** ONLINE  
-**PLATFORM:** PHP 7.0+（兼容 PHP 7.0.3 语法）  
+**PLATFORM:** PHP 7.0+（按 PHP 7.0 语法编写）  
 **DATABASE:** NOT REQUIRED  
 **NODE.JS:** NOT REQUIRED  
 **STORAGE:** JSON + FILE SYSTEM  
@@ -136,6 +136,7 @@ blog/
 ├── download.php
 ├── links.php
 ├── drive.php
+├── 404.php
 ├── admin/
 │   ├── index.php
 │   ├── dashboard.php
@@ -156,6 +157,9 @@ blog/
 │   ├── links.json
 │   └── downloads.json
 ├── uploads/
+│   └── .htaccess
+├── data/
+│   └── .htaccess
 ├── config.example.php
 └── .gitignore
 ```
