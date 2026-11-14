@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $msg = 'UPLOAD ERROR: ' . (int)$upload['error'];
                     break;
             }
-        } elseif (!is_uploaded_file($upload['tmp_name'])) {
+        } elseif (empty($upload['tmp_name']) || !is_uploaded_file($upload['tmp_name'])) {
             $msg = 'UPLOAD ERROR: INVALID TEMPORARY FILE';
         } else {
             $originalName = basename(str_replace('\\', '/', (string)$upload['name']));
