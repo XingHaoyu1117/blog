@@ -1,51 +1,63 @@
 <?php
-require __DIR__.'/inc/bootstrap.php';
+require __DIR__ . '/inc/bootstrap.php';
 
-// 有 file 参数时执行下载
 if (isset($_GET['file']) && $_GET['file'] !== '') {
-    $name = str_replace('\\', '/', $_GET['file']);
-    $parts = array_values(array_filter(explode('/', $name), fn($x) => $x !== '' && $x !== '.' && $x !== '..'));
-    $safe = implode('/', $parts);
-    $base = realpath(__DIR__.'/uploads');
-    $path = realpath(__DIR__.'/uploads/'.$safe);
-    if (!$safe || !$base || !$path || strpos($path, $base.DIRECTORY_SEPARATOR) !== 0 || !is_file($path)) {
+    $name = str_replace('\\', '/', (string)$_GET['file']);
+    $parts = explode('/', $name);
+    $safeParts = array();
+
+    foreach ($parts as $part) {
+        if ($part === '' || $part === '.' || $part === '..' || strpos($part, chr(0)) !== false) {
+            http_response_code(404);
+            exit('FILE NOT FOUND');
+        }
+        $safeParts[] = $part;
+    }
+
+    $safe = implode('/', $safeParts);
+    $base = realpath(__DIR__ . '/uploads');
+    $path = realpath(__DIR__ . '/uploads/' . $safe);
+    $prefix = $base ? rtrim($base, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR : '';
+
+    if ($safe === '' || !$base || !$path || strpos($path, $prefix) !== 0 || !is_file($path) || is_link($path)) {
         http_response_code(404);
         exit('FILE NOT FOUND');
     }
+
     $file = basename($path);
+    $asciiName = preg_replace('/[^A-Za-z0-9._-]/', '_', $file);
+    if ($asciiName === '' || $asciiName === '.' || $asciiName === '..') {
+        $asciiName = 'download';
+    }
+
     header('Content-Type: application/octet-stream');
-    header('Content-Length: '.filesize($path));
-    header('Content-Disposition: attachment; filename="'.str_replace('"', '', $file).'"');
+    header('X-Content-Type-Options: nosniff');
+    header('Content-Length: ' . filesize($path));
+    header("Content-Disposition: attachment; filename=\"" . $asciiName . "\"; filename*=UTF-8''" . rawurlencode($file));
     readfile($path);
     exit;
 }
 
-// 无参数时显示下载文件列表页面
-$uploadDir = __DIR__.'/uploads';
-$files = [];
+$uploadDir = __DIR__ . '/uploads';
+$files = array();
 if (is_dir($uploadDir)) {
-    $entries = scandir($uploadDir);
-    foreach ($entries as $entry) {
-        if ($entry === '.' || $entry === '..') continue;
-        $fullPath = $uploadDir.'/'.$entry;
-        if (is_file($fullPath)) {
-            $files[] = [
-                'name' => $entry,
-                'size' => filesize($fullPath),
-                'time' => filemtime($fullPath),
-            ];
+    foreach (array_diff(scandir($uploadDir), array('.', '..')) as $entry) {
+        $fullPath = $uploadDir . '/' . $entry;
+        if (is_file($fullPath) && !is_link($fullPath)) {
+            $files[] = array('name' => $entry, 'size' => filesize($fullPath), 'time' => filemtime($fullPath));
         }
     }
 }
 
-function formatSize($bytes) {
-    $units = ['B', 'KB', 'MB', 'GB'];
-    $i = 0;
-    while ($bytes >= 1024 && $i < count($units) - 1) {
+function formatSize($bytes)
+{
+    $units = array('B', 'KB', 'MB', 'GB');
+    $index = 0;
+    while ($bytes >= 1024 && $index < count($units) - 1) {
         $bytes /= 1024;
-        $i++;
+        $index++;
     }
-    return round($bytes, 2).' '.$units[$i];
+    return round($bytes, 2) . ' ' . $units[$index];
 }
 ?>
 <!doctype html>
@@ -57,27 +69,27 @@ function formatSize($bytes) {
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<?php include __DIR__.'/inc/header.php'; ?>
+<?php include __DIR__ . '/inc/header.php'; ?>
 <main class="container">
-<div class="card">
-<h1>[ DOWNLOAD ]</h1>
-<?php if (empty($files)): ?>
-<p>> 暂无可用文件。</p>
-<?php else: ?>
-<p>> 共 <?php echo count($files); ?> 个文件可下载：</p>
-<ul>
-<?php foreach ($files as $f): ?>
-<li>
-<a href="download.php?file=<?php echo urlencode($f['name']); ?>">
-[<?php echo date('Y-m-d', $f['time']); ?>] <?php echo htmlspecialchars($f['name']); ?>
-</a>
-<span style="opacity:0.6;"> — <?php echo formatSize($f['size']); ?></span>
-</li>
-<?php endforeach; ?>
-</ul>
-<?php endif; ?>
-</div>
+    <div class="card">
+        <h1>[ DOWNLOAD ]</h1>
+        <?php if (empty($files)): ?>
+            <p>&gt; 暂无可用文件。</p>
+        <?php else: ?>
+            <p>&gt; 共 <?=count($files)?> 个文件可下载：</p>
+            <ul>
+            <?php foreach ($files as $file): ?>
+                <li>
+                    <a href="download.php?file=<?=urlencode($file['name'])?>">
+                        [<?=date('Y-m-d', $file['time'])?>] <?=e($file['name'])?>
+                    </a>
+                    <span style="opacity:0.6;"> — <?=formatSize($file['size'])?></span>
+                </li>
+            <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+    </div>
 </main>
-<?php include __DIR__.'/inc/footer.php'; ?>
+<?php include __DIR__ . '/inc/footer.php'; ?>
 </body>
 </html>
