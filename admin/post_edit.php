@@ -21,7 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         foreach ($posts as $post) { $postId=(int)($post['id'] ?? 0); if ($postId>$maxId) $maxId=$postId; }
         $posts[]=['id'=>$maxId+1,'title'=>$title,'content'=>$content,'tags'=>$tags,'date'=>date('Y-m-d'),'views'=>0];
     }
-    save_json('posts.json', $posts);
+    if (!save_json('posts.json', $posts)) {
+        http_response_code(500);
+        exit('DATA SAVE FAILED. CHECK DATA DIRECTORY PERMISSIONS.');
+    }
     header('Location: posts.php');
     exit;
 }
