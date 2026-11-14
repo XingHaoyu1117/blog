@@ -6,9 +6,17 @@ if (!is_dir($root)) {
     @mkdir($root, 0755, true);
 }
 
-$sub = isset($_GET['dir']) ? preg_replace('/[^a-zA-Z0-9._-]/', '', (string)$_GET['dir']) : '';
+$requestedDir = isset($_GET['dir']) ? (string)$_GET['dir'] : '';
+$sub = '';
+if ($requestedDir !== '' && $requestedDir !== '.' && $requestedDir !== '..' &&
+    preg_match('/^[a-zA-Z0-9_-][a-zA-Z0-9._-]*$/', $requestedDir)) {
+    $sub = $requestedDir;
+}
 $dir = $root . ($sub !== '' ? '/' . $sub : '');
-if (!is_dir($dir) || is_link($dir)) {
+$rootReal = realpath($root);
+$dirReal = realpath($dir);
+if (!$rootReal || !$dirReal || strpos($dirReal, rtrim($rootReal, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR) !== 0 ||
+    !is_dir($dirReal) || is_link($dir)) {
     $sub = '';
     $dir = $root;
 }
