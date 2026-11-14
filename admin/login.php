@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         verify_csrf();
         $u=trim($_POST['user']??'');$p=$_POST['pass']??'';
         if(hash_equals((string)($config['admin_user']??'admin'),$u) && password_verify($p,$config['admin_password_hash']??'')){
-            session_regenerate_id(true);$_SESSION['admin']=true;unset($_SESSION['login_attempts'],$_SESSION['login_window']);header('Location:index.php');exit;
+            session_regenerate_id(true);$_SESSION['admin']=true;$_SESSION['csrf_token']=bin2hex(random_bytes(32));unset($_SESSION['login_attempts'],$_SESSION['login_window']);header('Location:index.php');exit;
         }
         $_SESSION['login_attempts']=($_SESSION['login_attempts']??0)+1;$error='ACCESS DENIED';
     }
