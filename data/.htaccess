@@ -1,5 +1,3 @@
-# JSON data is application-internal and must not be browsable directly.
+# JSON data must never be served directly over HTTP.
 Options -Indexes
-<FilesMatch "\.(json|tmp)$">
-    Require all denied
-</FilesMatch>
+Require all denied
