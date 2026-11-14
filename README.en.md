@@ -89,7 +89,7 @@ Default single-file upload limit: `100 MB`.
 
 # 🔐 Admin Panel
 
-The admin panel uses PHP sessions.
+The admin panel uses PHP sessions and persistent per-IP login throttling (up to five failed attempts in a ten-minute window).
 
 ```text
 COMMAND CENTER
