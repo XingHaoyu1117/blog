@@ -18,7 +18,7 @@
 ## ⚡ SYSTEM STATUS
 
 **SYSTEM:** ONLINE  
-**PLATFORM:** PHP 7.0+  
+**PLATFORM:** PHP 7.0+（兼容 PHP 7.0.3 语法）  
 **DATABASE:** NOT REQUIRED  
 **NODE.JS:** NOT REQUIRED  
 **STORAGE:** JSON + FILE SYSTEM  
@@ -50,7 +50,7 @@
 
 ## ☁️ TACTICAL DRIVE
 
-内置个人网盘，支持文件上传、下载、删除、列表、大小与修改时间显示、搜索、文件夹路径和多种文件格式。文件保存在 `uploads/`。
+内置个人网盘，支持文件上传、下载、删除、列表、大小与修改时间显示、文件名搜索和多种文件格式。文件保存在 `uploads/`。
 
 主要支持：
 
@@ -168,7 +168,7 @@ blog/
 
 复制 `config.example.php` 为 `config.php` 并填写管理员配置。`config.php` 不应提交到公开 GitHub 仓库。
 
-确保 PHP 可以写入 `data/` 和 `uploads/`。Linux 环境可根据服务器要求使用：
+确保 PHP 可以写入 `data/` 和 `uploads/`。Apache 站点需要启用 `.htaccess`；Nginx 不读取 `.htaccess`，必须在站点配置中另外禁止访问 `/data/` 并禁止上传目录执行脚本。Linux 环境可根据服务器要求使用：
 
 ```bash
 chmod 755 data
@@ -181,7 +181,7 @@ chmod 755 uploads
 
 # ⚠️ 安全注意事项
 
-部署到公网后建议使用 HTTPS、强管理员密码、定期备份 `data/` 与 `uploads/`，并限制可上传文件类型。
+部署到公网后建议使用 HTTPS、强管理员密码、定期备份 `data/` 与 `uploads/`。`data/` 必须禁止 HTTP 直接访问，`uploads/` 必须禁止脚本执行。项目已加入 Apache 目录保护规则；Nginx 用户需要自行配置等效规则。
 
 不要允许普通用户上传服务器可执行文件，例如：
 
@@ -237,7 +237,7 @@ config.php
 [ ] Create Folder
 [ ] Rename File
 [ ] Move File
-[ ] File Search
+[x] File Search
 [ ] Image Preview
 [ ] File Sharing Links
 [ ] Share Expiration
