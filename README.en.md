@@ -18,7 +18,7 @@ The project is intentionally simple: no Node.js, npm, database, or large framewo
 ## ⚡ SYSTEM STATUS
 
 **SYSTEM:** ONLINE  
-**PLATFORM:** PHP 7.0+  
+**PLATFORM:** PHP 7.0+ (PHP 7.0-compatible syntax)  
 **DATABASE:** NOT REQUIRED  
 **NODE.JS:** NOT REQUIRED  
 **STORAGE:** JSON + FILE SYSTEM  
@@ -202,7 +202,7 @@ Upload the project to the web root, for example `/public_html/`, and make sure `
 
 Copy `config.example.php` to `config.php` and configure the administrator settings. Do **not** commit `config.php` to a public GitHub repository.
 
-Make sure PHP can write to `data/` and `uploads/`.
+Make sure PHP can write to `data/` and `uploads/`. Apache deployments must allow the project's `.htaccess` files. Nginx does not read `.htaccess`; configure equivalent rules to block direct access to `/data/` and prevent script execution in `/uploads/`.
 
 ```bash
 chmod 755 data
@@ -215,7 +215,7 @@ The admin area is located under `/admin/`. Log in with your administrator accoun
 
 # ⚠️ Security Notes
 
-For public deployment, it is recommended to use HTTPS, a strong administrator password, regular backups, and restricted upload file types.
+For public deployment, use HTTPS, a strong administrator password, regular backups, and restricted upload file types. Direct HTTP access to `data/` must be blocked, and uploaded files must never be executed. Apache protection rules are included; Nginx deployments need equivalent server rules.
 
 Server-executable extensions such as these should never be accepted from untrusted users:
 
@@ -271,7 +271,7 @@ Planned features:
 [ ] Create Folder
 [ ] Rename File
 [ ] Move File
-[ ] File Search
+[x] File Search
 [ ] Image Preview
 [ ] File Sharing Links
 [ ] Share Expiration
