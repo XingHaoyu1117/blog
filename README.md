@@ -66,7 +66,7 @@ DOC / DOCX / XLS / XLSX / PPT / PPTX
 
 # 🔐 后台管理
 
-后台采用 PHP Session 登录：
+后台采用 PHP Session 登录，并对同一来源 IP 实施持久化失败次数限制（10 分钟窗口内最多 5 次）：
 
 ```text
 COMMAND CENTER
