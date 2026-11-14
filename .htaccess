@@ -1,4 +1,4 @@
-# Basic Apache hardening for sensitive project files.
+# Apache 2.4 hardening. Nginx users must apply equivalent location rules in server config.
 Options -Indexes
 
 <FilesMatch "^(config\.php|config\.example\.php)$">
@@ -8,4 +8,9 @@ Options -Indexes
 <FilesMatch "^\.(env|git|htaccess|htpasswd)">
     Require all denied
 </FilesMatch>
+
+<FilesMatch "^(composer\.(json|lock)|package(-lock)?\.json)$">
+    Require all denied
+</FilesMatch>
+
 ErrorDocument 404 /404.php
