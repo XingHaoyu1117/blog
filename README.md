@@ -228,6 +228,11 @@ config.php
 [x] Tactical UI
 [x] Site Settings
 [x] Personal Drive
+[x] PHP 7.0 Syntax Compatibility Pass
+[x] JSON File Locking
+[x] Upload Script Execution Protection
+[x] Admin Login Rate Limiting
+[x] Article View Deduplication
 ```
 
 计划功能：
