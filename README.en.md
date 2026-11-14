@@ -64,8 +64,7 @@ The built-in personal drive supports:
 - File listing
 - File size display
 - Modification time
-- File search
-- Folder paths
+- File-name search
 - Multiple file formats
 
 Files are stored in:
@@ -170,6 +169,7 @@ blog/
 ├── download.php
 ├── links.php
 ├── drive.php
+├── 404.php
 ├── admin/
 │   ├── index.php
 │   ├── dashboard.php
@@ -190,6 +190,9 @@ blog/
 │   ├── links.json
 │   └── downloads.json
 ├── uploads/
+│   └── .htaccess
+├── data/
+│   └── .htaccess
 ├── config.example.php
 └── .gitignore
 ```
@@ -202,7 +205,7 @@ Upload the project to the web root, for example `/public_html/`, and make sure `
 
 Copy `config.example.php` to `config.php` and configure the administrator settings. Do **not** commit `config.php` to a public GitHub repository.
 
-Make sure PHP can write to `data/` and `uploads/`. Apache deployments must allow the project's `.htaccess` files. Nginx does not read `.htaccess`; configure equivalent rules to block direct access to `/data/` and prevent script execution in `/uploads/`.
+Make sure PHP can write to `data/` and `uploads/`. Apache deployments must allow the project's `.htaccess` files. Nginx does not read `.htaccess`; configure equivalent rules to block direct access to `/data/` and prevent script execution in `/uploads/`. Apache deployments must allow the project's `.htaccess` files. Nginx does not read `.htaccess`; configure equivalent rules to block direct access to `/data/` and prevent script execution in `/uploads/`.
 
 ```bash
 chmod 755 data
@@ -259,6 +262,9 @@ Current version:
 [x] Tactical UI
 [x] Site Settings
 [x] Personal Drive
+[x] PHP 7.0 Syntax Compatibility Pass
+[x] JSON File Locking
+[x] Upload Script Execution Protection
 ```
 
 Planned features:
