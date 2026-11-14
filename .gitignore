@@ -1,5 +1,7 @@
 config.php
 data/*.json
+data/*.lock
+data/*.tmp*
 uploads/*
 !data/.gitkeep
 !uploads/.gitkeep
